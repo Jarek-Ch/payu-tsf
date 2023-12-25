@@ -86,6 +86,11 @@ export const PayuSecureForm = () => {
   };
 
   const renderForm = (initialPosId?: string) => {
+    if (!PayU) {
+      console.log("PayU not available");
+      return;
+    }
+
     const payuSdkForms = PayU(initialPosId || posId);
     setPayuSdkForms(payuSdkForms);
     setRednderedPosId(initialPosId || posId);
