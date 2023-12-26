@@ -1,6 +1,5 @@
 "use client";
 
-import payU from "@/types/secureForm";
 import { useState } from "react";
 import Script from "next/script";
 
@@ -19,9 +18,6 @@ const optionsForms = {
   lang: "pl" as const,
 };
 
-// cardNumber.render("#payu-card-number");
-// cardDate.render("#payu-card-date");
-// cardCvv.render("#payu-card-cvv");
 const payUFields = {
   NUMBER: "payu-card-number",
   DATE: "payu-card-date",
@@ -58,16 +54,14 @@ export const PayuSecureForm = () => {
   const [posId, setPosId] = useState(defaultPosId);
   const [renderedPosId, setRednderedPosId] = useState(defaultPosId);
   const [response, setResponse] = useState<
-    payU.TokenizeResultSuccess | payU.TokenizeResultError | undefined
+  payu.TokenizeResultSuccess | payu.TokenizeResultError | undefined
   >();
-  const [payuSdkForms, setPayuSdkForms] = useState<payU.PayU>();
+  const [payuSdkForms, setPayuSdkForms] = useState<payu.PayU>();
   const [secureForm, setSecureForm] = useState<{
-    [key: string]: payU.SecureForm;
+    [key: string]: payu.SecureForm;
   }>();
 
   const tokenize = () => {
-    if (busy) return;
-
     setResponse(undefined);
     if (!payuSdkForms) return;
 
@@ -76,7 +70,7 @@ export const PayuSecureForm = () => {
       payuSdkForms
         .tokenize("SINGLE")
         .then(function (
-          result: payU.TokenizeResultSuccess | payU.TokenizeResultError
+          result: payu.TokenizeResultSuccess | payu.TokenizeResultError
         ) {
           setResponse(result);
         });
@@ -86,11 +80,6 @@ export const PayuSecureForm = () => {
   };
 
   const renderForm = (initialPosId?: string) => {
-    if (!PayU) {
-      console.log("PayU not available");
-      return;
-    }
-
     const payuSdkForms = PayU(initialPosId || posId);
     setPayuSdkForms(payuSdkForms);
     setRednderedPosId(initialPosId || posId);
