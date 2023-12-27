@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const bodyStyle = `
-  bg-gradient-to-r from-[rgba(173,252,234,1)] to-[rgba(192,229,246,1)]
+  bg-gradient-to-r from-[#e3f5ff] to-[rgba(192,229,246,1)]
 `;
 
 export default function RootLayout({

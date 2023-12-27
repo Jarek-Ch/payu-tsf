@@ -2,7 +2,7 @@ import { PayuSecureForm } from "@/components/PayuSecureForm";
 import Image from "next/image";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 sm:p-16 md:p-24">
+    <main className="flex min-h-screen flex-col items-center p-8 text-black sm:p-16 md:p-24">
       <div className="w-full max-w-5xl items-center font-mono text-sm">
         <h1 className="text-lg">
           <Image alt="Logo PayU" src="/payu.svg" width="32" height="32"></Image>
