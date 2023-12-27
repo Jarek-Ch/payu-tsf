@@ -35,12 +35,12 @@ const panelStyle = `
 
 const inputStyle = `
   w-full
-  sm:w-[12rem]
+  sm:w-[12.5rem]
   p-2 rounded border
 `;
 
 const inputWrapperStyle = `
-  w-full sm:w-[18.5rem]
+  w-full sm:w-[19rem]
   flex items-start sm:items-center justify-between
   flex-col
   sm:flex-row
@@ -190,7 +190,7 @@ export const PayuSecureForm = () => {
 
         <div className={`${panelStyle} basis-full`}>
           <p className={shadowLabelStyle}>Last response:</p>
-          <div className="break-words">{JSON.stringify(response)}</div>
+          <div className="break-all">{JSON.stringify(response)}</div>
         </div>
       </div>
     </>
