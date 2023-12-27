@@ -22,23 +22,28 @@ const payUFields = {
   NUMBER: "payu-card-number",
   DATE: "payu-card-date",
   CVV: "payu-card-cvv",
-}
+};
 
 const { NUMBER, DATE, CVV } = payUFields;
 const defaultPosId = "393823";
 
 const panelStyle = `
-  p-8 bg-white rounded shadow
+  w-full sm:w-auto
+  flex flex-wrap content-start p-8 bg-white rounded shadow
+  gap-2
 `;
 
 const inputStyle = `
-  w-[12rem]
-  m-1 p-1 rounded border
+  w-full
+  sm:w-[12rem]
+  p-2 rounded border
 `;
 
 const inputWrapperStyle = `
-  w-[20rem]
-  flex items-center justify-between
+  w-full sm:w-[18.5rem]
+  flex items-start sm:items-center justify-between
+  flex-col
+  sm:flex-row
 `;
 
 const buttonStyle = `
@@ -54,7 +59,7 @@ export const PayuSecureForm = () => {
   const [posId, setPosId] = useState(defaultPosId);
   const [renderedPosId, setRednderedPosId] = useState(defaultPosId);
   const [response, setResponse] = useState<
-  payu.TokenizeResultSuccess | payu.TokenizeResultError | undefined
+    payu.TokenizeResultSuccess | payu.TokenizeResultError | undefined
   >();
   const [payuSdkForms, setPayuSdkForms] = useState<payu.PayU>();
   const [secureForm, setSecureForm] = useState<{
@@ -67,13 +72,11 @@ export const PayuSecureForm = () => {
 
     try {
       //tokenizacja karty (komunikacja z serwerem PayU)
-      payuSdkForms
-        .tokenize("SINGLE")
-        .then(function (
-          result: payu.TokenizeResultSuccess | payu.TokenizeResultError
-        ) {
-          setResponse(result);
-        });
+      payuSdkForms.tokenize("SINGLE").then(function (
+        result: payu.TokenizeResultSuccess | payu.TokenizeResultError,
+      ) {
+        setResponse(result);
+      });
     } catch (e) {
       console.log(e); // błędy techniczne
     }
@@ -126,10 +129,10 @@ export const PayuSecureForm = () => {
         onLoad={() => renderForm()}
       />
       <div className="flex flex-wrap gap-4">
-        <div className={`${panelStyle} max-w-[24rem]`}>
+        <div className={`${panelStyle} sm:max-w-[23rem]`}>
           <div className={inputWrapperStyle}>
             <label htmlFor="posId" className="mr-4">
-              posId
+              POS Id
             </label>
             <input
               className={inputStyle}
@@ -151,10 +154,8 @@ export const PayuSecureForm = () => {
           </button>
         </div>
 
-        <div className={`${panelStyle} max-w-[24rem]`}>
-          <p className={shadowLabelStyle}>
-            Redered posId: {renderedPosId}
-          </p>
+        <div className={`${panelStyle} sm:max-w-[23rem]`}>
+          <p className={shadowLabelStyle}>Redered posId: {renderedPosId}</p>
 
           <div className={inputWrapperStyle}>
             <label htmlFor={NUMBER} className="mr-4">
@@ -187,7 +188,7 @@ export const PayuSecureForm = () => {
           </button>
         </div>
 
-        <div className={`${panelStyle} w-full min-w-[24rem]`}>
+        <div className={`${panelStyle} basis-full`}>
           <p className={shadowLabelStyle}>Last response:</p>
           <div className="break-words">{JSON.stringify(response)}</div>
         </div>
