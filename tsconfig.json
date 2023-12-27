@@ -27,10 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "@types/payu-emea-sdk"
+    "@types/payu-emea-sdk",
+    "prettier.config.js"
   ],
   "exclude": ["node_modules"],
-  "types": [
-    "payu-emea-sdk"
-  ]
+  "types": ["payu-emea-sdk"]
 }
